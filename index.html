@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tic-tac-toe</title>
+    <style>
+        html {
+            margin: 50px;
+        }
+
+        #moves div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #282828;
+        }
+
+        #moves {
+            max-width: 350px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .field {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tic tac toe</h1>
+    <div id="moves">
+        <div class="field" id="one"></div>
+        <div class="field" id="two"></div>
+        <div class="field" id="tree"></div>
+        <div class="field" id="four"></div>
+        <div class="field" id="five"></div>
+        <div class="field" id="six"></div>
+        <div class="field" id="seven"></div>
+        <div class="field" id="eight"></div>
+        <div class="field" id="nine"></div>
+    </div>
+    <button>Restart</button>
+    <script>
+        let vl = true;
+        let field;
+        let title;
+
+        function createFiled() {
+            field = document.querySelectorAll(".field");
+            field.forEach((item) => {
+                item.addEventListener("click", move)
+            })
+        }
+
+        function move(e) {
+            if (vl) {
+                this.innerHTML = "X";
+                vl = !vl;
+                console.log(vl);
+            } else {
+                this.innerHTML = "O";
+                vl = !vl;
+            }
+            win();
+        }
+
+        function win() {
+            // win X
+            let winX = "WIN X";
+            let winO = "WIN O";
+
+            if (field[0].innerHTML === "X" && field[1].innerHTML === "X" && field[2].innerHTML === "X") {
+                alertWin(winX)
+            }
+            if (field[3].innerHTML === "X" && field[4].innerHTML === "X" && field[5].innerHTML === "X") {
+                alertWin(winX)
+            }
+            if (field[6].innerHTML === "X" && field[7].innerHTML === "X" && field[8].innerHTML === "X") {
+                alertWin(winX)
+            }
+            if (field[2].innerHTML === "X" && field[4].innerHTML === "X" && field[6].innerHTML === "X") {
+                alertWin(winX)
+            }
+            if (field[0].innerHTML === "X" && field[4].innerHTML === "X" && field[8].innerHTML === "X") {
+                alertWin(winX)
+            }
+
+            if (field[0].innerHTML === "X" && field[3].innerHTML === "X" && field[6].innerHTML === "X") {
+                alertWin(winX)
+            }
+            if (field[1].innerHTML === "X" && field[4].innerHTML === "X" && field[7].innerHTML === "X") {
+                alertWin(winX)
+            }
+            if (field[2].innerHTML === "X" && field[5].innerHTML === "X" && field[8].innerHTML === "X") {
+                alertWin(winX)
+            }
+            // win O
+            if (field[0].innerHTML === "O" && field[1].innerHTML === "O" && field[2].innerHTML === "O") {
+                alertWin(winO)
+            }
+            if (field[3].innerHTML === "O" && field[4].innerHTML === "O" && field[5].innerHTML === "O") {
+                alertWin(winO)
+            }
+            if (field[6].innerHTML === "O" && field[7].innerHTML === "O" && field[8].innerHTML === "O") {
+                alertWin(winO)
+            }
+            if (field[2].innerHTML === "O" && field[4].innerHTML === "O" && field[6].innerHTML === "O") {
+                alertWin(winO)
+            }
+            if (field[0].innerHTML === "O" && field[4].innerHTML === "O" && field[8].innerHTML === "O") {
+                alertWin(winO)
+            }
+
+            if (field[0].innerHTML === "O" && field[3].innerHTML === "O" && field[6].innerHTML === "O") {
+                alertWin(winO)
+            }
+            if (field[1].innerHTML === "O" && field[4].innerHTML === "O" && field[7].innerHTML === "O") {
+                alertWin(winO)
+            }
+            if (field[2].innerHTML === "O" && field[5].innerHTML === "O" && field[8].innerHTML === "O") {
+                alertWin(winO)
+            }
+            // draw
+        }
+
+        function alertWin(win) {
+            title = document.querySelector("h1");
+            title.innerHTML = `${win}`;
+
+            field.forEach((item) => {
+                item.innerHTML = ""
+            })
+        }
+
+        function btnRestart() {
+            const btnRestart = document.querySelector("button");
+            btnRestart.addEventListener("click", () => {
+                field.forEach((item) => {
+                    item.innerHTML = "";
+                })
+                title = document.querySelector("h1");
+                title.innerHTML = "Tic tac toe";
+            })
+
+        }
+
+        createFiled();
+        btnRestart();
+    </script>
+</body>
+
+</html>
